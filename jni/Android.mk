@@ -1,14 +1,11 @@
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := first
-LOCAL_SRC_FILES := first.cpp
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := test
-LOCAL_SRC_FILES := test.cpp
-LOCAL_SHARED_LIBRARIES := first
+LOCAL_SRC_FILES := test.cpp throw.cpp
+LOCAL_SHARED_LIBRARIES := test
+LOCAL_CFLAGS += -flto=thin
+LOCAL_LDFLAGS := -flto=thin -fuse-ld=gold    
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
